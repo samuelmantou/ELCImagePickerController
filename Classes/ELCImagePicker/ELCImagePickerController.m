@@ -20,7 +20,6 @@
 - (id)initImagePicker
 {
     ELCAlbumPickerController *albumPicker = [[ELCAlbumPickerController alloc] initWithStyle:UITableViewStylePlain];
-    
     self = [super initWithRootViewController:albumPicker];
     if (self) {
         self.maximumImagesCount = 4;

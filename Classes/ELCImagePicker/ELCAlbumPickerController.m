@@ -62,6 +62,17 @@
 
                 // Reload albums
                 [self performSelectorOnMainThread:@selector(reloadTableView) withObject:nil waitUntilDone:YES];
+                
+                //显示主要的图片选择器
+                ELCAssetTablePicker *picker = [[ELCAssetTablePicker alloc] initWithNibName: nil bundle: nil];
+                picker.parent = self;
+                
+                picker.assetGroup = [self.assetGroups objectAtIndex:0];
+                [picker.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+                
+                picker.assetPickerFilterDelegate = self.assetPickerFilterDelegate;
+                
+                [self.navigationController pushViewController:picker animated:NO];
             };
             
             // Group Enumerator Failure Block
@@ -79,7 +90,7 @@
                                  failureBlock:assetGroupEnumberatorFailure];
         
         }
-    });    
+    });
 }
 
 - (void)reloadTableView
